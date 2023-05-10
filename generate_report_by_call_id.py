@@ -3,12 +3,9 @@ import requests
 import json
 import csv
 
-login = 'seu_usuario'
-password = 'sua_senha'
-
 url = 'https://api.bloqueio.procon.sp.gov.br/v1/ChatMessage/CreateReport'
 
-token = get_access_token(login, password)
+token = get_access_token()
 
 headers = {
     'Authorization': f'Bearer {token}',
@@ -31,6 +28,7 @@ def generate_report(phone_number_dict):
     for phone in phone_number_dict:
         
         naomeligue_meu_telefone = phone['naomeligue_meu_telefone']
+        naomeligue_empresa_enchendo_saco = phone['naomeligue_empresa_enchendo_saco']
         naomeligue_numero_enchendo_saco = phone['naomeligue_numero_enchendo_saco']
         naomeligue_data = phone['naomeligue_data']
         naomeligue_hora = phone['naomeligue_hora']
@@ -114,7 +112,7 @@ def generate_report(phone_number_dict):
             },
             {
                 'chatMessageId': 14,
-                'textButton': 'Oi',
+                'textButton': f'{naomeligue_empresa_enchendo_saco}',
                 'input': True,
                 'inputType': 'text',
                 'select': False,

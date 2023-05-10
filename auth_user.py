@@ -1,9 +1,12 @@
 import requests
 import json
 
+login = 'seu_usuario'
+password = 'sua_senha'
+
 url = 'https://api.bloqueio.procon.sp.gov.br/v1/User/login'
 
-def get_access_token(login, password):
+def get_access_token():
 
     payload = json.dumps({
         'name': login,
